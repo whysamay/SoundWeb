@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+litserve
+audiocraft
+torchaudio
+# You may need to install torch and torchvision separately depending on your environment 

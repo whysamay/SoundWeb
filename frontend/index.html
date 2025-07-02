@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lo-Fi Generator</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="w-full max-w-md p-6 bg-gray-800 rounded-lg shadow-lg mt-8">
+    <h1 class="text-2xl font-bold mb-4 text-center">Lo-Fi Generator</h1>
+    <form id="lofi-form" class="space-y-4">
+      <div>
+        <label class="block mb-1">Mood</label>
+        <select id="mood" class="w-full p-2 rounded bg-gray-700">
+          <option value="chill sunset">Chill Sunset</option>
+          <option value="cozy rain">Cozy Rain</option>
+          <option value="retro daydream">Retro Daydream</option>
+          <option value="study">Study</option>
+          <option value="sleep">Sleep</option>
+          <option value="nostalgic">Nostalgic</option>
+        </select>
+      </div>
+      <div>
+        <label class="block mb-1">Tempo</label>
+        <input type="range" id="tempo" min="0" max="2" value="1" class="w-full">
+        <div class="flex justify-between text-xs mt-1">
+          <span>Slow</span><span>Medium</span><span>Fast</span>
+        </div>
+      </div>
+      <div>
+        <label class="block mb-1">Effects</label>
+        <div class="flex flex-wrap gap-2">
+          <label><input type="checkbox" value="vinyl crackle" class="mr-1">Vinyl Crackle</label>
+          <label><input type="checkbox" value="tape hum" class="mr-1">Tape Hum</label>
+          <label><input type="checkbox" value="city noise" class="mr-1">City Noise</label>
+          <label><input type="checkbox" value="rain" class="mr-1">Rain</label>
+        </div>
+      </div>
+      <div>
+        <label class="block mb-1">Vibe Slider</label>
+        <input type="range" id="vibe" min="0" max="100" value="50" class="w-full">
+        <div class="flex justify-between text-xs mt-1">
+          <span>Jazzy</span><span>Ambient</span>
+        </div>
+      </div>
+      <div class="flex justify-between items-center">
+        <button type="button" id="surprise" class="bg-purple-600 hover:bg-purple-700 px-3 py-1 rounded">Surprise Me</button>
+        <button type="submit" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded font-bold">Generate</button>
+      </div>
+    </form>
+    <div id="loading" class="hidden flex flex-col items-center mt-6">
+      <svg class="animate-spin h-8 w-8 text-purple-400 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>
+      <span>Generating your vibe...</span>
+    </div>
+    <div id="audio-section" class="hidden mt-6 flex flex-col items-center">
+      <audio id="audio-player" controls class="w-full"></audio>
+      <a id="download-link" href="#" download="lofi.wav" class="mt-2 bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded">Download</a>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html> 
