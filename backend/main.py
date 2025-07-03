@@ -5,13 +5,18 @@ from audiocraft.models import MusicGen
 from audiocraft.data.audio import audio_write
 import time
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import FastAPI, Response, UploadFile, Form
+from fastapi import FastAPI, Response, UploadFile, Form, Request
 import torch
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='[%(asctime)s] %(levelname)s in %(module)s: %(message)s')
+logger = logging.getLogger(__name__)
 
 class MusicGenLitAPI(ls.LitAPI):
     def setup(self, device):
         self.model = MusicGen.get_pretrained('facebook/musicgen-small')
-        self.model.set_generation_params(duration=5)
+        self.model.set_generation_params(duration=25)
 
     def decode_request(self, request):
         path = f"tmp/input_{time.time()}"
@@ -59,10 +64,24 @@ def health():
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"[INFO] Using device: {device}")
 musicgen_model = MusicGen.get_pretrained('facebook/musicgen-small')
-musicgen_model.set_generation_params(duration=5)
+musicgen_model.set_generation_params(duration=25)
 
 @app.post("/")
-async def generate_lofi(content: UploadFile = None, prompt: str = Form(...)):
+async def generate_lofi(request: Request, content: UploadFile = None, prompt: str = Form(None), duration: str = Form("5")):
+    # If no prompt is provided, use a default prompt
+    if prompt is None or prompt.strip() == "":
+        prompt = "A relaxing lofi beat"
+    if "loop" not in prompt.lower():
+        prompt += ", seamless loop"
+    logger.info(f"Received prompt: {prompt}")
+    # Parse duration
+    try:
+        duration_val = int(duration)
+        if duration_val not in [5, 10, 15, 30]:
+            duration_val = 5
+    except Exception:
+        duration_val = 5
+    musicgen_model.set_generation_params(duration=duration_val)
     # If no file is uploaded or file is empty, generate from prompt only
     if content is None or content.filename == "":
         wav = musicgen_model.generate([prompt])
