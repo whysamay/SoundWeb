@@ -97,7 +97,7 @@ form.addEventListener('submit', async (e) => {
   formData.append('duration', duration);
 
   try {
-    const response = await fetch('http://127.0.0.1:8000/', {
+    const response = await fetch('https://f5a1-2405-201-4012-e086-1960-7c69-27bd-217c.ngrok-free.app/', {
       method: 'POST',
       body: formData
     });

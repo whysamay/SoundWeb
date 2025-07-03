@@ -51,6 +51,14 @@
 ## About the Developer
 This project was developed by whysamay as a hands-on exploration of AI-powered music generation, modern web UI design, and full-stack application development. All features, UI/UX, and backend logic were implemented from scratch, with a focus on usability and creative empowerment.
 
+## Live Demo
+
+You can try the frontend here:
+
+[https://lofigenerator-soundweb.netlify.app/](https://lofigenerator-soundweb.netlify.app/)
+
+> **Note:** The app will work fully when the backend (AI music generator) is running on my laptop and exposed via ngrok. If the backend is offline, you can still explore the UI, but music generation will be unavailable. For best results, try it during demo sessions or contact me to schedule a live test!
+
 ---
 
 If you have questions or want to contribute, feel free to reach out via GitHub. 
