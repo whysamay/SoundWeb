@@ -46,7 +46,7 @@
 
 ## Screenshot
 
-![App Screenshot](assets/screenshot.png)
+![App Screenshot](assets/Screenshot.png)
 
 ## About the Developer
 This project was developed by whysamay as a hands-on exploration of AI-powered music generation, modern web UI design, and full-stack application development. All features, UI/UX, and backend logic were implemented from scratch, with a focus on usability and creative empowerment.
